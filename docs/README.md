@@ -48,7 +48,7 @@ BtoC の電力アプリの新規開発を担当しています。
 
 【使用技術】
 
-NestJS, TypeScript, tRPC, AWS, Terraform, MySQL, Cursor
+NestJS、TypeScript、tRPC、AWS、Terraform、MySQL、Cursor
 
 ---
 
@@ -72,7 +72,7 @@ NestJS, TypeScript, tRPC, AWS, Terraform, MySQL, Cursor
 
 【使用技術】
 
-Go, Docker, MySQL, Auth0, Terraform, Claude Code, Cursor, AWS
+Go、Docker、MySQL、Auth0、Terraform、Claude Code、Cursor、AWS
 
 ---
 
@@ -96,7 +96,7 @@ Go, Docker, MySQL, Auth0, Terraform, Claude Code, Cursor, AWS
 
 【使用技術】
 
-TypeScript, NestJS, Next.js, AWS, Terraform, PostgreSQL, Docker
+TypeScript、NestJS、Next.js、AWS、Terraform、PostgreSQL、Docker
 
 ---
 
@@ -120,7 +120,7 @@ TypeScript, NestJS, Next.js, AWS, Terraform, PostgreSQL, Docker
 
 【使用技術】
 
-Go, AWS, Docker, PostgreSQL
+Go、AWS、Docker、PostgreSQL
 
 ---
 
@@ -141,7 +141,7 @@ Go, AWS, Docker, PostgreSQL
 
 【使用技術】
 
-Go, GraphQL, MySQL, Docker, GitHub, AWS
+Go、GraphQL、MySQL、Docker、GitHub、AWS
 
 ---
 

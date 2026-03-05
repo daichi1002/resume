@@ -1,4 +1,7 @@
 {
+  "filters": {
+    "comments": true
+  },
   "rules": {
     "preset-ja-technical-writing": {
       "sentence-length": {
@@ -12,7 +15,7 @@
         "max": 3
       },
       "max-kanji-continuous-len": {
-        "max": 6
+        "max": 8
       },
       "arabic-kanji-numbers": true,
       "no-mix-dearu-desumasu": {
@@ -21,10 +24,7 @@
         "preferInList": "である",
         "strict": false
       },
-      "ja-no-mixed-period": {
-        "periodMark": "。",
-        "severity": "warning"
-      },
+      "ja-no-mixed-period": false,
       "no-double-negative-ja": true,
       "no-dropping-the-ra": true,
       "no-doubled-conjunctive-particle-ga": {
