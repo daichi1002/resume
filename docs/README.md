@@ -13,6 +13,12 @@
 
 ---
 
+## 職務要約
+
+2021 年から Web エンジニアとして、フロントエンド・バックエンド双方を経験し、直近はバックエンドを中心に要件定義から設計・実装までを一貫して担当しています。Go、TypeScript を中心に、新規事業の立ち上げやレガシーシステムのリプレイスに携わってきました。2025 年からは K.S. ロジャース株式会社にも副業として参画し、複数プロジェクトを並行して推進しています。
+
+---
+
 ## スキル
 
 | カテゴリ     | 内容                                                                 |
@@ -20,14 +26,53 @@
 | 言語         | Go, TypeScript, Ruby, PHP             |
 | バックエンド | NestJS, Ruby on Rails, Laravel                   |
 | フロントエンド | Next.js, Vue.js, Nuxt.js                                            |
+| モバイル     | React Native, Expo                                                  |
 | インフラ・DB | AWS, Terraform, Docker, GCP, MySQL, PostgreSQL                       |
+| AI 開発支援  | Claude Code, Cursor, OpenSpec                                       |
 | その他       | Auth0, tRPC, GraphQL, Jira                                          |
+
+---
+
+## 経歴タイムライン
+
+<svg viewBox="0 0 860 285" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; font-family: 'Noto Sans Japanese', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;">
+  <g stroke="#e2e2e2" stroke-width="1">
+    <line x1="20" y1="20" x2="20" y2="250" />
+    <line x1="180" y1="20" x2="180" y2="250" />
+    <line x1="340" y1="20" x2="340" y2="250" />
+    <line x1="500" y1="20" x2="500" y2="250" />
+    <line x1="660" y1="20" x2="660" y2="250" />
+    <line x1="820" y1="20" x2="820" y2="250" />
+  </g>
+  <g font-size="11" fill="#888">
+    <text x="20" y="265" text-anchor="middle">2017</text>
+    <text x="180" y="265" text-anchor="middle">2019</text>
+    <text x="340" y="265" text-anchor="middle">2021</text>
+    <text x="500" y="265" text-anchor="middle">2023</text>
+    <text x="660" y="265" text-anchor="middle">2025</text>
+    <text x="820" y="265" text-anchor="middle">2027</text>
+  </g>
+  <line x1="793" y1="15" x2="793" y2="250" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,3" />
+  <text x="793" y="12" text-anchor="middle" font-size="10" fill="#e53e3e">現在</text>
+  <text x="40" y="34" font-size="12" font-weight="600" fill="#333">福岡銀行</text>
+  <rect x="40" y="40" width="273" height="14" rx="3" fill="#a0aec0" />
+  <text x="40" y="68" font-size="10" fill="#888">2017/04〜2020/09</text>
+  <text x="347" y="94" font-size="12" font-weight="600" fill="#333">Vitalize</text>
+  <rect x="347" y="100" width="167" height="14" rx="3" fill="#718096" />
+  <text x="347" y="128" font-size="10" fill="#888">2021/02〜2023/03</text>
+  <text x="520" y="154" font-size="12" font-weight="600" fill="#333">メンバーズ（本業）</text>
+  <rect x="520" y="160" width="273" height="14" rx="3" fill="#2b6cb0" />
+  <text x="520" y="188" font-size="10" fill="#888">2023/04〜現在</text>
+  <text x="667" y="214" font-size="12" font-weight="600" fill="#333">K.S. ロジャース（副業）</text>
+  <rect x="667" y="220" width="126" height="14" rx="3" fill="#38a169" />
+  <text x="667" y="248" font-size="10" fill="#888">2025/02〜現在</text>
+</svg>
 
 ---
 
 ## 職務経歴詳細
 
-### 株式会社メンバーズ（2023/04〜現在）
+### 株式会社メンバーズ（2023/04〜現在・本業）
 
 #### モバイルアプリ新規開発プロジェクト（2026/01〜現在）
 
@@ -38,19 +83,20 @@ BtoC の電力アプリの新規開発を担当しています。
 【担当業務】
 
 - バックエンド開発
+- アプリ開発（React Native, Expo）
 - インフラ開発
 - スクラムイベント参加
 
 【発揮したバリュー】
 
-- BFF を導入し、複数の外部 API からの連携を疎結合にできるように実装しました
 - 他アプリでプッシュ通知機能を DB でキューを管理していたことに対して SQS の導入を行いました
 - チーム方針として採用している Claude Code と OpenSpec を組み合わせた仕様駆動開発に沿って、要件定義から実装までを一貫した仕様書ベースで開発を進めています
 - アプリ内アンケートや Firebase Analytics のデータをもとに既存機能の改善・新機能を企画し、Claude の Artifacts で動くプロトタイプとして可視化してビジネスサイドへ提案しました
+- React Native / Expo を用いたアプリ側の開発にも参加し、バックエンドと合わせて機能を横断的に実装しました
 
 【使用技術】
 
-NestJS、TypeScript、tRPC、AWS、Terraform、MySQL、Claude Code、OpenSpec、Cursor
+NestJS、TypeScript、tRPC、React Native、Expo、AWS、Terraform、MySQL、Claude Code、OpenSpec、Cursor
 
 ---
 
@@ -123,7 +169,7 @@ Go、GraphQL、MySQL、Docker、GitHub、AWS
 
 ---
 
-### K.S.ロジャース株式会社（2025/02〜現在）
+### K.S.ロジャース株式会社（2025/02〜現在・副業）
 
 #### IP 権利取引プラットフォーム新規開発（2026/04〜現在）
 
