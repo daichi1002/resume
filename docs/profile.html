@@ -1,201 +1,168 @@
-<title>長野大地 1分自己紹介</title>
+<title>長野大地 自己紹介</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-  /* Layout: 話す順に並んだ原稿カード。左に目安秒数、右に台詞。上部に練習用ストップウォッチと短縮版の切り替え */
+  /* Layout: 画面共有用の 1 枚。左に名前、中央に経歴の線、右下に「1 円 → テスト 1 件」の掛け合い。文字は最小限。
+     画面共有で見え方を揃えるため、閲覧者のテーマに関係なく単一テーマで固定 */
   :root {
-    --bg: #eef1f5;
-    --sheet: #ffffff;
-    --ink: #1c2330;
-    --muted: #5b6577;
-    --line: #dde2ea;
+    --bg: #f3f5f8;
+    --panel: #ffffff;
+    --ink: #17202e;
+    --muted: #6a7486;
+    --line: #d9dee7;
+    --bank: #8a94a6;
     --accent: #1f4fa3;
-    --accent-soft: #e7eefa;
-    --smile: #b4570f;
-    --smile-soft: #fbefe3;
+    --side: #2f8f5b;
+    --smile: #d2691e;
     --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-    --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    color-scheme: light;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0f131a; --sheet: #171c25; --ink: #e5e9f0; --muted: #9aa4b5; --line: #2a3140;
-      --accent: #7fa6ec; --accent-soft: #1d2a42; --smile: #f0a868; --smile-soft: #3a2a1c; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0f131a; --sheet: #171c25; --ink: #e5e9f0; --muted: #9aa4b5; --line: #2a3140;
-    --accent: #7fa6ec; --accent-soft: #1d2a42; --smile: #f0a868; --smile-soft: #3a2a1c; color-scheme: dark;
-  }
-
+  html, body { height: 100%; }
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.8;
-    padding-block: 32px;
+    font-family: var(--font-display);
+    padding-block: 24px;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
-  }
-
-  .sheet {
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--sheet);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 28px 32px 32px;
+    box-sizing: border-box;
     display: grid;
-    gap: 24px;
+    place-items: center;
   }
 
-  header { display: grid; gap: 4px; padding-bottom: 16px; border-bottom: 2px solid var(--accent); }
-  .eyebrow {
-    font-family: var(--font-display); font-weight: 700; font-size: 11px;
-    letter-spacing: 0.18em; color: var(--accent); margin: 0;
+  .stage {
+    width: 100%;
+    max-width: 1120px;
+    aspect-ratio: 16 / 9;
+    max-height: 100%;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: clamp(20px, 4vw, 48px);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    grid-template-rows: auto 1fr auto;
+    gap: clamp(16px, 2.5vw, 32px) clamp(20px, 4vw, 56px);
   }
-  h1 { font-family: var(--font-display); font-weight: 900; font-size: 28px; line-height: 1.3; margin: 0; text-wrap: balance; }
-  .sub { margin: 0; color: var(--muted); font-size: 13px; }
 
-  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
-  .watch {
-    font-family: var(--font-mono); font-size: 32px; font-variant-numeric: tabular-nums;
-    min-width: 4.2ch; color: var(--ink);
+  /* 名前 */
+  .who { grid-column: 1; grid-row: 1 / 3; display: grid; align-content: center; gap: 10px; }
+  .who .role {
+    font-family: var(--font-mono); font-weight: 600; font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.16em; color: var(--accent);
   }
-  .watch.over { color: var(--smile); }
-  button {
-    font: 700 13px var(--font-display); letter-spacing: 0.04em;
-    padding: 8px 16px; border-radius: 4px; cursor: pointer;
-    border: 1px solid var(--accent); background: var(--accent); color: var(--sheet);
-  }
-  button.ghost { background: transparent; color: var(--accent); }
-  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .toggle { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; }
-  .toggle input { accent-color: var(--accent); width: 16px; height: 16px; }
-  .total { font-size: 12px; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+  .who h1 { margin: 0; font-weight: 900; font-size: clamp(36px, 6vw, 76px); line-height: 1.05; letter-spacing: 0.02em; }
+  .who .place { font-size: clamp(13px, 1.4vw, 18px); color: var(--muted); }
 
-  .script { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-  .script li {
-    display: grid; grid-template-columns: 5.5em 1fr; gap: 16px;
-    padding: 14px 0; border-top: 1px solid var(--line);
-  }
-  .script li:first-child { border-top: 0; padding-top: 0; }
-  .time { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
-  .time b { display: block; font-family: var(--font-display); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
-  .line { margin: 0; min-width: 0; }
-  .joke {
-    background: var(--smile-soft); color: var(--ink);
-    box-shadow: inset 0 -2px 0 var(--smile); padding: 0 2px;
-  }
-  .pause { font-family: var(--font-mono); font-size: 11px; color: var(--smile); white-space: nowrap; }
-  .sidegig[hidden] { display: none !important; }
+  /* 経歴の線 */
+  .journey { grid-column: 2; grid-row: 1; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .track { position: relative; height: 64px; }
+  .seg { position: absolute; top: 22px; height: 12px; border-radius: 6px; }
+  .seg.bank { left: 0; width: 34%; background: var(--bank); }
+  .seg.eng { left: 40%; right: 0; background: var(--accent); }
+  .seg.side { left: 81%; right: 0; top: 40px; height: 8px; background: var(--side); }
+  .pin { position: absolute; top: 0; font-family: var(--font-mono); font-size: clamp(11px, 1.1vw, 13px); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .labels { display: grid; grid-template-columns: 34% 6% 1fr; font-size: clamp(13px, 1.5vw, 18px); font-weight: 700; }
+  .labels .b { color: var(--bank); }
+  .labels .e { grid-column: 3; color: var(--accent); }
+  .labels .e small { font-weight: 500; color: var(--side); margin-left: 8px; font-size: 0.8em; }
 
-  .tips { display: grid; gap: 8px; padding: 16px 18px; background: var(--accent-soft); border-radius: 4px; }
-  .tips h2 { font-family: var(--font-display); font-size: 14px; margin: 0; letter-spacing: 0.06em; }
-  .tips ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 13.5px; }
-  .tips li::marker { color: var(--accent); }
-
-  @media (max-width: 560px) {
-    body { padding-block: 16px; }
-    .sheet { padding: 20px 18px 24px; }
-    .script li { grid-template-columns: 1fr; gap: 2px; }
-    .time b { display: inline; margin-right: 8px; }
-    .total { margin-left: 0; }
+  /* 1 円 → テスト 1 件 */
+  .gag { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(10px, 2vw, 24px); min-width: 0; }
+  .card {
+    border: 1px solid var(--line); border-radius: 6px; padding: clamp(14px, 2vw, 24px);
+    display: grid; gap: 6px; justify-items: center; text-align: center; min-height: 100%;
+    box-sizing: border-box; align-content: center;
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .card .big { font-weight: 900; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .card .cap { font-size: clamp(12px, 1.3vw, 16px); color: var(--muted); }
+  .card.then .big { color: var(--bank); }
+  .card.now { border-color: var(--smile); background: transparent; cursor: pointer; font: inherit; color: inherit; }
+  .card.now .big { color: var(--smile); }
+  .card.now .q { font-size: clamp(40px, 6vw, 72px); font-weight: 900; color: var(--smile); }
+  .card.now:focus-visible { outline: 2px solid var(--smile); outline-offset: 3px; }
+  .arrow { font-size: clamp(22px, 3vw, 36px); color: var(--muted); }
+  .reveal { display: grid; gap: 6px; justify-items: center; }
+  .card.now .reveal { animation: pop 0.35s ease-out; }
+  @keyframes pop { from { transform: scale(0.85); opacity: 0.2; } to { transform: scale(1); opacity: 1; } }
+
+  /* 下段：いま・これから */
+  .now-next { grid-column: 1 / -1; grid-row: 3; display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; border-top: 1px solid var(--line); padding-top: clamp(12px, 1.8vw, 20px); }
+  .kw { font-size: clamp(13px, 1.5vw, 18px); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .kw span { font-family: var(--font-mono); font-size: 0.7em; font-weight: 600; letter-spacing: 0.14em; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-family: var(--font-mono); font-weight: 500; font-size: clamp(11px, 1.1vw, 14px); padding: 2px 9px; border: 1px solid var(--line); border-radius: 4px; }
+  .kw.next { margin-left: auto; color: var(--accent); }
+
+  @media (max-width: 720px) {
+    html, body { height: auto; }
+    .stage { aspect-ratio: auto; grid-template-columns: 1fr; grid-template-rows: none; }
+    .who, .journey, .gag, .now-next { grid-column: 1; grid-row: auto; }
+    .kw.next { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .card.now .reveal { animation: none; } }
 </style>
 
-<article class="sheet">
-  <header>
-    <p class="eyebrow">SELF INTRODUCTION · 約 60 秒</p>
-    <h1>「自己紹介をお願いします」と言われたら</h1>
-    <p class="sub">長野 大地／オレンジの箇所が笑いどころ。秒数は話し始めからの目安です。</p>
-  </header>
-
-  <div class="controls">
-    <span class="watch" id="watch" aria-live="off">0:00</span>
-    <button type="button" id="startBtn">練習スタート</button>
-    <button type="button" class="ghost" id="resetBtn">リセット</button>
-    <label class="toggle" for="shortMode"><input type="checkbox" id="shortMode">40 秒版（副業の段落を省く）</label>
-    <span class="total" id="total">目標 60 秒</span>
-  </div>
-
-  <ol class="script">
-    <li>
-      <span class="time"><b>あいさつ</b>0:00</span>
-      <p class="line">長野大地と申します。本日はよろしくお願いいたします。</p>
-    </li>
-    <li>
-      <span class="time"><b>原点</b>0:05</span>
-      <p class="line">新卒で福岡銀行に入り、窓口業務と法人営業を 3 年半担当しました。銀行では<span class="joke">1 円合わないと帰れない世界</span>にいましたが、<span class="pause">（一拍）</span>今は<span class="joke">テストが 1 件落ちると帰れない世界</span>にいます。几帳面さはそのまま活きています。</p>
-    </li>
-    <li>
-      <span class="time"><b>いま</b>0:22</span>
-      <p class="line">2021 年から Web エンジニアとして、フロントエンドとバックエンドの両方を経験してきました。直近は電力アプリの新規開発でバックエンドを中心に、アプリやインフラまで担当しています。アンケート機能やお知らせ機能を、要望のヒアリングからリリースまで任せてもらいました。</p>
-    </li>
-    <li class="sidegig">
-      <span class="time"><b>副業</b>0:42</span>
-      <p class="line">また副業でも開発に参加していて、Go、TypeScript、PHP を日々行き来しています。</p>
-    </li>
-    <li>
-      <span class="time"><b>これから</b><span id="lastTime">0:50</span></span>
-      <p class="line">これからは技術だけでなく、チームやメンバーの成長にも関わっていきたいと考えています。本日はよろしくお願いいたします。</p>
-    </li>
-  </ol>
-
-  <section class="tips">
-    <h2>話すときのポイント</h2>
-    <ul>
-      <li>笑いどころは一か所だけ。「（一拍）」で少し間を置くと伝わりやすい</li>
-      <li>窓口での残業経験がなければ「1 円のズレも許されない世界から、1 件のバグも見逃せない世界へ」に替える</li>
-      <li>「アンケート機能」「副業」は質問が来やすいので、SQS への移行や OpenSpec の話を答えとして用意しておく</li>
-    </ul>
+<main class="stage">
+  <section class="who">
+    <span class="role">WEB ENGINEER</span>
+    <h1>長野<br>大地</h1>
+    <span class="place">福岡</span>
   </section>
-</article>
+
+  <section class="journey" aria-label="経歴">
+    <div class="track">
+      <span class="pin" style="left:0">2017</span>
+      <span class="pin" style="left:40%">2021</span>
+      <span class="pin" style="right:0">NOW</span>
+      <span class="seg bank"></span>
+      <span class="seg eng"></span>
+      <span class="seg side"></span>
+    </div>
+    <div class="labels">
+      <span class="b">銀行</span>
+      <span class="e">エンジニア<small>＋副業</small></span>
+    </div>
+  </section>
+
+  <section class="gag" aria-label="銀行とエンジニアの比較">
+    <div class="card then">
+      <span class="big">1 円</span>
+      <span class="cap">合わないと帰れない</span>
+    </div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <button type="button" class="card now" id="reveal" aria-label="クリックで表示">
+      <span class="q" id="q">?</span>
+    </button>
+  </section>
+
+  <footer class="now-next">
+    <div class="kw"><span>NOW</span>電力アプリ新規開発</div>
+    <div class="chips">
+      <span class="chip">Go</span><span class="chip">TypeScript</span><span class="chip">PHP</span>
+      <span class="chip">React Native</span><span class="chip">AWS</span>
+    </div>
+    <div class="kw next"><span>NEXT</span>チームを育てる側へ</div>
+  </footer>
+</main>
 
 <script>
   (function () {
-    var watch = document.getElementById("watch");
-    var startBtn = document.getElementById("startBtn");
-    var resetBtn = document.getElementById("resetBtn");
-    var shortMode = document.getElementById("shortMode");
-    var total = document.getElementById("total");
-    var lastTime = document.getElementById("lastTime");
-    var sidegig = document.querySelector(".sidegig");
-    var startedAt = 0, elapsed = 0, timer = null;
-
-    function limit() { return shortMode.checked ? 40 : 60; }
-    function fmt(s) { return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
-    function render() {
-      var s = Math.floor(elapsed / 1000);
-      watch.textContent = fmt(s);
-      watch.classList.toggle("over", s > limit());
+    var btn = document.getElementById("reveal");
+    var shown = false;
+    function show() {
+      if (shown) return;
+      shown = true;
+      btn.innerHTML = '<span class="reveal"><span class="big">テスト 1 件</span><span class="cap">落ちると帰れない</span></span>';
+      btn.setAttribute("aria-label", "テスト 1 件 落ちると帰れない");
     }
-    function tick() { elapsed = Date.now() - startedAt; render(); }
-
-    startBtn.addEventListener("click", function () {
-      if (timer) {
-        clearInterval(timer); timer = null;
-        startBtn.textContent = "再開";
-      } else {
-        startedAt = Date.now() - elapsed;
-        timer = setInterval(tick, 200);
-        startBtn.textContent = "ストップ";
-      }
-    });
-    resetBtn.addEventListener("click", function () {
-      clearInterval(timer); timer = null; elapsed = 0;
-      startBtn.textContent = "練習スタート";
-      render();
-    });
-    shortMode.addEventListener("change", function () {
-      sidegig.hidden = shortMode.checked;
-      lastTime.textContent = shortMode.checked ? "0:42" : "0:50";
-      total.textContent = "目標 " + limit() + " 秒";
-      render();
+    btn.addEventListener("click", show);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === " " || e.key === "ArrowRight" || e.key === "Enter") { e.preventDefault(); show(); }
     });
   })();
 </script>
