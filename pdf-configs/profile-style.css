@@ -1,0 +1,65 @@
+/* 1ページのプロフィールシート用（style.css を上書き） */
+
+body {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #222;
+}
+
+h1:first-child {
+  font-size: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #2b6cb0;
+}
+
+h2 {
+  font-size: 13px;
+  margin: 14px 0 6px;
+  padding-left: 8px;
+  border-left: 4px solid #2b6cb0;
+}
+
+p {
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  font-size: 10.5px;
+}
+
+td,
+th {
+  padding: 3px 6px;
+}
+
+/* 先頭の基本情報テーブルは見出し行を項目名として扱う */
+h1 + table th:nth-child(odd),
+h1 + table td:nth-child(odd) {
+  width: 14%;
+  font-weight: 600;
+  background-color: #ddd;
+}
+
+h1 + table tr:nth-child(even) {
+  background-color: transparent;
+}
+
+h1 + table th:nth-child(even) {
+  font-weight: normal;
+  background-color: transparent;
+}
+
+ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+li {
+  margin: 2px 0;
+}
+
+strong {
+  color: #2b6cb0;
+}

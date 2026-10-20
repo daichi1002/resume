@@ -1,0 +1,168 @@
+<title>長野大地 自己紹介</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  /* Layout: 画面共有用の 1 枚。左に名前、中央に経歴の線、右下に「1 円 → テスト 1 件」の掛け合い。文字は最小限。
+     画面共有で見え方を揃えるため、閲覧者のテーマに関係なく単一テーマで固定 */
+  :root {
+    --bg: #f3f5f8;
+    --panel: #ffffff;
+    --ink: #17202e;
+    --muted: #6a7486;
+    --line: #d9dee7;
+    --bank: #8a94a6;
+    --accent: #1f4fa3;
+    --side: #2f8f5b;
+    --smile: #d2691e;
+    --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    color-scheme: light;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-display);
+    padding-block: 24px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 1120px;
+    aspect-ratio: 16 / 9;
+    max-height: 100%;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: clamp(20px, 4vw, 48px);
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    grid-template-rows: auto 1fr auto;
+    gap: clamp(16px, 2.5vw, 32px) clamp(20px, 4vw, 56px);
+  }
+
+  /* 名前 */
+  .who { grid-column: 1; grid-row: 1 / 3; display: grid; align-content: center; gap: 10px; }
+  .who .role {
+    font-family: var(--font-mono); font-weight: 600; font-size: clamp(11px, 1.1vw, 14px);
+    letter-spacing: 0.16em; color: var(--accent);
+  }
+  .who h1 { margin: 0; font-weight: 900; font-size: clamp(36px, 6vw, 76px); line-height: 1.05; letter-spacing: 0.02em; }
+  .who .place { font-size: clamp(13px, 1.4vw, 18px); color: var(--muted); }
+
+  /* 経歴の線 */
+  .journey { grid-column: 2; grid-row: 1; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .track { position: relative; height: 64px; }
+  .seg { position: absolute; top: 22px; height: 12px; border-radius: 6px; }
+  .seg.bank { left: 0; width: 34%; background: var(--bank); }
+  .seg.eng { left: 40%; right: 0; background: var(--accent); }
+  .seg.side { left: 81%; right: 0; top: 40px; height: 8px; background: var(--side); }
+  .pin { position: absolute; top: 0; font-family: var(--font-mono); font-size: clamp(11px, 1.1vw, 13px); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .labels { display: grid; grid-template-columns: 34% 6% 1fr; font-size: clamp(13px, 1.5vw, 18px); font-weight: 700; }
+  .labels .b { color: var(--bank); }
+  .labels .e { grid-column: 3; color: var(--accent); }
+  .labels .e small { font-weight: 500; color: var(--side); margin-left: 8px; font-size: 0.8em; }
+
+  /* 1 円 → テスト 1 件 */
+  .gag { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(10px, 2vw, 24px); min-width: 0; }
+  .card {
+    border: 1px solid var(--line); border-radius: 6px; padding: clamp(14px, 2vw, 24px);
+    display: grid; gap: 6px; justify-items: center; text-align: center; min-height: 100%;
+    box-sizing: border-box; align-content: center;
+  }
+  .card .big { font-weight: 900; font-size: clamp(28px, 4.6vw, 58px); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .card .cap { font-size: clamp(12px, 1.3vw, 16px); color: var(--muted); }
+  .card.then .big { color: var(--bank); }
+  .card.now { border-color: var(--smile); background: transparent; cursor: pointer; font: inherit; color: inherit; }
+  .card.now .big { color: var(--smile); }
+  .card.now .q { font-size: clamp(40px, 6vw, 72px); font-weight: 900; color: var(--smile); }
+  .card.now:focus-visible { outline: 2px solid var(--smile); outline-offset: 3px; }
+  .arrow { font-size: clamp(22px, 3vw, 36px); color: var(--muted); }
+  .reveal { display: grid; gap: 6px; justify-items: center; }
+  .card.now .reveal { animation: pop 0.35s ease-out; }
+  @keyframes pop { from { transform: scale(0.85); opacity: 0.2; } to { transform: scale(1); opacity: 1; } }
+
+  /* 下段：いま・これから */
+  .now-next { grid-column: 1 / -1; grid-row: 3; display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; border-top: 1px solid var(--line); padding-top: clamp(12px, 1.8vw, 20px); }
+  .kw { font-size: clamp(13px, 1.5vw, 18px); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .kw span { font-family: var(--font-mono); font-size: 0.7em; font-weight: 600; letter-spacing: 0.14em; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-family: var(--font-mono); font-weight: 500; font-size: clamp(11px, 1.1vw, 14px); padding: 2px 9px; border: 1px solid var(--line); border-radius: 4px; }
+  .kw.next { margin-left: auto; color: var(--accent); }
+
+  @media (max-width: 720px) {
+    html, body { height: auto; }
+    .stage { aspect-ratio: auto; grid-template-columns: 1fr; grid-template-rows: none; }
+    .who, .journey, .gag, .now-next { grid-column: 1; grid-row: auto; }
+    .kw.next { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .card.now .reveal { animation: none; } }
+</style>
+
+<main class="stage">
+  <section class="who">
+    <span class="role">WEB ENGINEER</span>
+    <h1>長野<br>大地</h1>
+    <span class="place">福岡</span>
+  </section>
+
+  <section class="journey" aria-label="経歴">
+    <div class="track">
+      <span class="pin" style="left:0">2017</span>
+      <span class="pin" style="left:40%">2021</span>
+      <span class="pin" style="right:0">NOW</span>
+      <span class="seg bank"></span>
+      <span class="seg eng"></span>
+      <span class="seg side"></span>
+    </div>
+    <div class="labels">
+      <span class="b">銀行</span>
+      <span class="e">エンジニア<small>＋副業</small></span>
+    </div>
+  </section>
+
+  <section class="gag" aria-label="銀行とエンジニアの比較">
+    <div class="card then">
+      <span class="big">1 円</span>
+      <span class="cap">合わないと帰れない</span>
+    </div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <button type="button" class="card now" id="reveal" aria-label="クリックで表示">
+      <span class="q" id="q">?</span>
+    </button>
+  </section>
+
+  <footer class="now-next">
+    <div class="kw"><span>NOW</span>電力アプリ新規開発</div>
+    <div class="chips">
+      <span class="chip">Go</span><span class="chip">TypeScript</span><span class="chip">PHP</span>
+      <span class="chip">React Native</span><span class="chip">AWS</span>
+    </div>
+    <div class="kw next"><span>NEXT</span>チームを育てる側へ</div>
+  </footer>
+</main>
+
+<script>
+  (function () {
+    var btn = document.getElementById("reveal");
+    var shown = false;
+    function show() {
+      if (shown) return;
+      shown = true;
+      btn.innerHTML = '<span class="reveal"><span class="big">テスト 1 件</span><span class="cap">落ちると帰れない</span></span>';
+      btn.setAttribute("aria-label", "テスト 1 件 落ちると帰れない");
+    }
+    btn.addEventListener("click", show);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === " " || e.key === "ArrowRight" || e.key === "Enter") { e.preventDefault(); show(); }
+    });
+  })();
+</script>

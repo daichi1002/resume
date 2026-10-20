@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "resume template",
   "scripts": {
-    "lint": "textlint docs/README.md",
-    "build:pdf": "md-to-pdf docs/README.md --config-file ./pdf-configs/config.js"
+    "lint": "textlint docs/README.md docs/profile.md",
+    "build:pdf": "md-to-pdf docs/README.md --config-file ./pdf-configs/config.js",
+    "build:profile-pdf": "md-to-pdf docs/profile.md --config-file ./pdf-configs/profile-config.js"
   },
   "keywords": [],
   "devDependencies": {
