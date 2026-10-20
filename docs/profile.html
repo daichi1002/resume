@@ -1,10 +1,10 @@
-<title>長野大地 プロフィールシート</title>
+<title>長野大地 1分自己紹介</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-  /* Layout: A4 一枚に収まるシート。ヘッダー帯 + 2 カラム（左：人物・実績／右：スキル・経歴）、狭い画面では 1 カラム */
+  /* Layout: 話す順に並んだ原稿カード。左に目安秒数、右に台詞。上部に練習用ストップウォッチと短縮版の切り替え */
   :root {
     --bg: #eef1f5;
     --sheet: #ffffff;
@@ -13,250 +13,189 @@
     --line: #dde2ea;
     --accent: #1f4fa3;
     --accent-soft: #e7eefa;
+    --smile: #b4570f;
+    --smile-soft: #fbefe3;
     --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
     --font-body: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0f131a; --sheet: #171c25; --ink: #e5e9f0; --muted: #9aa4b5;
-      --line: #2a3140; --accent: #7fa6ec; --accent-soft: #1d2a42; color-scheme: dark;
+      --bg: #0f131a; --sheet: #171c25; --ink: #e5e9f0; --muted: #9aa4b5; --line: #2a3140;
+      --accent: #7fa6ec; --accent-soft: #1d2a42; --smile: #f0a868; --smile-soft: #3a2a1c; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0f131a; --sheet: #171c25; --ink: #e5e9f0; --muted: #9aa4b5;
-    --line: #2a3140; --accent: #7fa6ec; --accent-soft: #1d2a42; color-scheme: dark;
+    --bg: #0f131a; --sheet: #171c25; --ink: #e5e9f0; --muted: #9aa4b5; --line: #2a3140;
+    --accent: #7fa6ec; --accent-soft: #1d2a42; --smile: #f0a868; --smile-soft: #3a2a1c; color-scheme: dark;
   }
 
   body {
     background: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
-    font-size: 13px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.8;
     padding-block: 32px;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
 
   .sheet {
-    max-width: 210mm;
+    max-width: 720px;
     margin: 0 auto;
     background: var(--sheet);
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 28px 32px 32px;
     display: grid;
-    gap: 22px;
+    gap: 24px;
   }
 
-  header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 12px 24px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--accent);
-  }
+  header { display: grid; gap: 4px; padding-bottom: 16px; border-bottom: 2px solid var(--accent); }
   .eyebrow {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    margin: 0 0 4px;
+    font-family: var(--font-display); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.18em; color: var(--accent); margin: 0;
   }
-  h1 {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 30px;
-    line-height: 1.2;
-    margin: 0;
-    text-wrap: balance;
-  }
-  h1 .roman {
-    display: block;
-    font-family: var(--font-mono);
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-  .meta {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 2px 14px;
-    margin: 0;
-    font-size: 12px;
-  }
-  .meta dt { color: var(--muted); }
-  .meta dd { margin: 0; }
-  .meta a { color: var(--accent); text-decoration: none; }
-  .meta a:hover, .meta a:focus-visible { text-decoration: underline; }
+  h1 { font-family: var(--font-display); font-weight: 900; font-size: 28px; line-height: 1.3; margin: 0; text-wrap: balance; }
+  .sub { margin: 0; color: var(--muted); font-size: 13px; }
 
-  .lead {
-    margin: 0;
-    padding: 12px 16px;
-    background: var(--accent-soft);
-    border-radius: 4px;
-    font-size: 13.5px;
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+  .watch {
+    font-family: var(--font-mono); font-size: 32px; font-variant-numeric: tabular-nums;
+    min-width: 4.2ch; color: var(--ink);
   }
+  .watch.over { color: var(--smile); }
+  button {
+    font: 700 13px var(--font-display); letter-spacing: 0.04em;
+    padding: 8px 16px; border-radius: 4px; cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: var(--sheet);
+  }
+  button.ghost { background: transparent; color: var(--accent); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toggle { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; }
+  .toggle input { accent-color: var(--accent); width: 16px; height: 16px; }
+  .total { font-size: 12px; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
 
-  .cols {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 22px 28px;
+  .script { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .script li {
+    display: grid; grid-template-columns: 5.5em 1fr; gap: 16px;
+    padding: 14px 0; border-top: 1px solid var(--line);
   }
-  .col { display: grid; gap: 20px; align-content: start; min-width: 0; }
+  .script li:first-child { border-top: 0; padding-top: 0; }
+  .time { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+  .time b { display: block; font-family: var(--font-display); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
+  .line { margin: 0; min-width: 0; }
+  .joke {
+    background: var(--smile-soft); color: var(--ink);
+    box-shadow: inset 0 -2px 0 var(--smile); padding: 0 2px;
+  }
+  .pause { font-family: var(--font-mono); font-size: 11px; color: var(--smile); white-space: nowrap; }
+  .sidegig[hidden] { display: none !important; }
 
-  h2 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    margin: 0 0 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .tips { display: grid; gap: 8px; padding: 16px 18px; background: var(--accent-soft); border-radius: 4px; }
+  .tips h2 { font-family: var(--font-display); font-size: 14px; margin: 0; letter-spacing: 0.06em; }
+  .tips ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 13.5px; }
+  .tips li::marker { color: var(--accent); }
 
-  ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
-  li::marker { color: var(--accent); }
-  .wins li b { font-family: var(--font-display); font-weight: 700; color: var(--accent); }
-
-  .skills { margin: 0; display: grid; gap: 7px; }
-  .skills div { display: grid; grid-template-columns: 7.5em 1fr; gap: 8px; }
-  .skills dt { color: var(--muted); font-size: 12px; }
-  .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 4px; }
-  .chip {
-    font-size: 11.5px;
-    line-height: 1.5;
-    padding: 1px 7px;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-  }
-
-  .timeline { list-style: none; padding: 0; gap: 0; }
-  .timeline li {
-    display: grid;
-    grid-template-columns: 9.5em 1fr;
-    gap: 10px;
-    padding: 7px 0;
-    border-top: 1px solid var(--line);
-  }
-  .timeline li:first-child { border-top: 0; padding-top: 0; }
-  .when {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    padding-top: 2px;
-  }
-  .org { font-weight: 700; display: block; }
-  .tag {
-    font-size: 10.5px;
-    color: var(--accent);
-    border: 1px solid currentColor;
-    border-radius: 3px;
-    padding: 0 5px;
-    margin-left: 4px;
-    font-weight: 400;
-  }
-  .what { font-size: 12px; color: var(--muted); }
-
-  @media (max-width: 640px) {
+  @media (max-width: 560px) {
     body { padding-block: 16px; }
     .sheet { padding: 20px 18px 24px; }
-    header { grid-template-columns: 1fr; }
-    .cols { grid-template-columns: 1fr; }
-    h1 { font-size: 26px; }
+    .script li { grid-template-columns: 1fr; gap: 2px; }
+    .time b { display: inline; margin-right: 8px; }
+    .total { margin-left: 0; }
   }
-  @media (max-width: 380px) {
-    .skills div, .timeline li { grid-template-columns: 1fr; gap: 2px; }
-  }
-
-  @page { size: A4; margin: 12mm; }
-  @media print {
-    :root { --bg: #fff; --sheet: #fff; --ink: #1c2330; --muted: #5b6577; --line: #dde2ea; --accent: #1f4fa3; --accent-soft: #e7eefa; color-scheme: light; }
-    body { padding: 0; font-size: 11.5px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .sheet { border: 0; padding: 0; max-width: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
 <article class="sheet">
   <header>
-    <div>
-      <p class="eyebrow">PROFILE SHEET</p>
-      <h1>長野 大地<span class="roman">NAGANO DAICHI · WEB ENGINEER</span></h1>
-    </div>
-    <dl class="meta">
-      <dt>居住地</dt><dd>福岡県</dd>
-      <dt>経験</dt><dd>Web エンジニア（2021 年〜）</dd>
-      <dt>前職</dt><dd>福岡銀行（2017〜2020）</dd>
-      <dt>GitHub</dt><dd><a href="https://github.com/daichi1002">@daichi1002</a></dd>
-      <dt>Zenn</dt><dd><a href="https://zenn.dev/daichi1002">@daichi1002</a></dd>
-    </dl>
+    <p class="eyebrow">SELF INTRODUCTION · 約 60 秒</p>
+    <h1>「自己紹介をお願いします」と言われたら</h1>
+    <p class="sub">長野 大地／オレンジの箇所が笑いどころ。秒数は話し始めからの目安です。</p>
   </header>
 
-  <p class="lead">銀行員からエンジニアに転身し、2021 年から Web エンジニアとしてフロントエンド・バックエンド双方を経験してきました。直近はバックエンドを中心に、要件定義から設計・実装・インフラまでを一貫して担当しています。現在は本業（メンバーズ）に加え、副業（K.S. ロジャース）でも開発を並行して推進しています。</p>
-
-  <div class="cols">
-    <div class="col">
-      <section>
-        <h2>主な実績</h2>
-        <ul class="wins">
-          <li><b>アプリ内アンケート機能</b><br>要望収集の方法を調査・提案して要件を固め、アプリ・サーバー双方を実装してリリース。アプリだけでなくサービス自体への意見も届くようになった</li>
-          <li><b>プッシュ通知基盤の改善</b><br>DB 管理の送信キューを SQS（DLQ 併用）へ移行し、大量配信時の DB 負荷とリトライ自前実装の課題を解消</li>
-          <li><b>お知らせ機能</b><br>スプレッドシートの入力内容がそのまま反映される仕組みを構築し、運用者だけで掲載・配信が完結</li>
-          <li><b>開発プロセス整備</b><br>OpenSpec による仕様駆動開発で、誰が実装しても同じフローになるモバイルチーム向けの進め方を整備</li>
-          <li><b>在庫管理システム</b><br>要件定義・画面設計・DB 設計を担当し、スケジュール通りにリリース</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>強み</h2>
-        <ul>
-          <li>課題を起点に提案し、要件定義から実装・リリースまでやり切る</li>
-          <li>バックエンドを軸に、フロント・モバイル・インフラまで横断して対応できる</li>
-          <li>AI 開発支援ツールを活用し、プロトタイプでの提案や開発フローの改善につなげる</li>
-        </ul>
-      </section>
-    </div>
-
-    <div class="col">
-      <section>
-        <h2>スキル</h2>
-        <dl class="skills">
-          <div><dt>言語</dt><dd><span class="chip">Go</span><span class="chip">TypeScript</span><span class="chip">Ruby</span><span class="chip">PHP</span></dd></div>
-          <div><dt>バックエンド</dt><dd><span class="chip">NestJS</span><span class="chip">Ruby on Rails</span><span class="chip">Laravel</span></dd></div>
-          <div><dt>フロント</dt><dd><span class="chip">Next.js</span><span class="chip">Vue.js</span><span class="chip">Nuxt.js</span></dd></div>
-          <div><dt>モバイル</dt><dd><span class="chip">React Native</span><span class="chip">Expo</span></dd></div>
-          <div><dt>インフラ・DB</dt><dd><span class="chip">AWS</span><span class="chip">Terraform</span><span class="chip">Docker</span><span class="chip">GCP</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span></dd></div>
-          <div><dt>AI 開発支援</dt><dd><span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">OpenSpec</span></dd></div>
-        </dl>
-      </section>
-
-      <section>
-        <h2>経歴</h2>
-        <ol class="timeline">
-          <li><span class="when">2026/04 – 現在</span><div><span class="org">K.S. ロジャース<span class="tag">副業</span></span><span class="what">IP 権利取引プラットフォーム新規開発（Laravel／バックエンド）</span></div></li>
-          <li><span class="when">2026/01 – 現在</span><div><span class="org">メンバーズ<span class="tag">本業</span></span><span class="what">BtoC 電力アプリ新規開発（バックエンド・アプリ・インフラ）</span></div></li>
-          <li><span class="when">2025/02 – 2026/02</span><div><span class="org">K.S. ロジャース<span class="tag">副業</span></span><span class="what">中古車オークションシステムのリプレイス（Go／DDD）</span></div></li>
-          <li><span class="when">2023/04 – 2025/03</span><div><span class="org">メンバーズ<span class="tag">本業</span></span><span class="what">海外向けデリバリー・電動バイクリース・医療系システム開発</span></div></li>
-          <li><span class="when">2021/02 – 2023/03</span><div><span class="org">Vitalize</span><span class="what">決済・見積書作成・ハウスクリーニング系システム開発</span></div></li>
-          <li><span class="when">2017/04 – 2020/09</span><div><span class="org">福岡銀行</span><span class="what">預金窓口業務・法人営業</span></div></li>
-        </ol>
-      </section>
-
-      <section>
-        <h2>今後のキャリア</h2>
-        <ul>
-          <li>マネジメント領域にチャレンジし、メンバーの成長支援にも取り組みたい</li>
-          <li>パフォーマンスやアクセシビリティなど、品質にこだわったものづくりを続けたい</li>
-        </ul>
-      </section>
-    </div>
+  <div class="controls">
+    <span class="watch" id="watch" aria-live="off">0:00</span>
+    <button type="button" id="startBtn">練習スタート</button>
+    <button type="button" class="ghost" id="resetBtn">リセット</button>
+    <label class="toggle" for="shortMode"><input type="checkbox" id="shortMode">40 秒版（副業の段落を省く）</label>
+    <span class="total" id="total">目標 60 秒</span>
   </div>
+
+  <ol class="script">
+    <li>
+      <span class="time"><b>あいさつ</b>0:00</span>
+      <p class="line">長野大地と申します。本日はよろしくお願いいたします。</p>
+    </li>
+    <li>
+      <span class="time"><b>原点</b>0:05</span>
+      <p class="line">新卒で福岡銀行に入り、窓口業務と法人営業を 3 年半担当しました。銀行では<span class="joke">1 円合わないと帰れない世界</span>にいましたが、<span class="pause">（一拍）</span>今は<span class="joke">テストが 1 件落ちると帰れない世界</span>にいます。几帳面さはそのまま活きています。</p>
+    </li>
+    <li>
+      <span class="time"><b>いま</b>0:22</span>
+      <p class="line">2021 年から Web エンジニアとして、フロントエンドとバックエンドの両方を経験してきました。直近は電力アプリの新規開発でバックエンドを中心に、アプリやインフラまで担当しています。アンケート機能やお知らせ機能を、要望のヒアリングからリリースまで任せてもらいました。</p>
+    </li>
+    <li class="sidegig">
+      <span class="time"><b>副業</b>0:42</span>
+      <p class="line">また副業でも開発に参加していて、Go、TypeScript、PHP を日々行き来しています。</p>
+    </li>
+    <li>
+      <span class="time"><b>これから</b><span id="lastTime">0:50</span></span>
+      <p class="line">これからは技術だけでなく、チームやメンバーの成長にも関わっていきたいと考えています。本日はよろしくお願いいたします。</p>
+    </li>
+  </ol>
+
+  <section class="tips">
+    <h2>話すときのポイント</h2>
+    <ul>
+      <li>笑いどころは一か所だけ。「（一拍）」で少し間を置くと伝わりやすい</li>
+      <li>窓口での残業経験がなければ「1 円のズレも許されない世界から、1 件のバグも見逃せない世界へ」に替える</li>
+      <li>「アンケート機能」「副業」は質問が来やすいので、SQS への移行や OpenSpec の話を答えとして用意しておく</li>
+    </ul>
+  </section>
 </article>
+
+<script>
+  (function () {
+    var watch = document.getElementById("watch");
+    var startBtn = document.getElementById("startBtn");
+    var resetBtn = document.getElementById("resetBtn");
+    var shortMode = document.getElementById("shortMode");
+    var total = document.getElementById("total");
+    var lastTime = document.getElementById("lastTime");
+    var sidegig = document.querySelector(".sidegig");
+    var startedAt = 0, elapsed = 0, timer = null;
+
+    function limit() { return shortMode.checked ? 40 : 60; }
+    function fmt(s) { return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+    function render() {
+      var s = Math.floor(elapsed / 1000);
+      watch.textContent = fmt(s);
+      watch.classList.toggle("over", s > limit());
+    }
+    function tick() { elapsed = Date.now() - startedAt; render(); }
+
+    startBtn.addEventListener("click", function () {
+      if (timer) {
+        clearInterval(timer); timer = null;
+        startBtn.textContent = "再開";
+      } else {
+        startedAt = Date.now() - elapsed;
+        timer = setInterval(tick, 200);
+        startBtn.textContent = "ストップ";
+      }
+    });
+    resetBtn.addEventListener("click", function () {
+      clearInterval(timer); timer = null; elapsed = 0;
+      startBtn.textContent = "練習スタート";
+      render();
+    });
+    shortMode.addEventListener("change", function () {
+      sidegig.hidden = shortMode.checked;
+      lastTime.textContent = shortMode.checked ? "0:42" : "0:50";
+      total.textContent = "目標 " + limit() + " 秒";
+      render();
+    });
+  })();
+</script>
