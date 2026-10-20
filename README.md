@@ -29,6 +29,13 @@ $ yarn build:pdf
 
 The output PDF can be styled as you like with CSS. Edit the `pdf-configs/style.css`.  
 
+A one-page profile sheet for interviews (`docs/profile.md`) can be generated as well.
+Its styles are in `pdf-configs/profile-style.css`.
+
+```
+$ yarn build:profile-pdf
+```
+
 ### 🛠 Create release
 
 When you push with a `v**` tag, GitHub Actions will run the build, generate the PDF, create a Release, and register the PDF to Assets.
